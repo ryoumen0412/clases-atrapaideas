@@ -43,7 +43,7 @@ print(f'En chile hay {comunasChile} comunas.')
 '''
 maxPob = censoArreglado['Población censada'].max()
 comunaMaxPob = censoArreglado[censoArreglado["Población censada"] == maxPob]
-print(comunaMaxPob['Comuna'].values)
+print(f'La comuna que tiene mayor poblacion en Chile es {comunaMaxPob['Comuna'].values}, y tiene {comunaMaxPob["Población censada"].values} habitantes...')
 
 '''
 4.
@@ -74,4 +74,3 @@ print(f'La comuna con mas porcentaje sin educacion es {sinEducacionMaxComuna['Co
 '''
 8.
 '''
-git
