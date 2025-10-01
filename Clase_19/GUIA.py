@@ -52,7 +52,7 @@ plt.ylabel('Nota obtenida')
 
 y_modelo = modelo.predict(x)
 plt.plot(x,y_modelo, color='red')
-plt.show()
+# plt.show()
 
 pendiente_modelo = modelo.coef_[0]
 interseccion_modelo = modelo.intercept_
@@ -77,3 +77,23 @@ r2 = r2_score(y, y_modelo)
 
 print(r2)
 
+nota10 = modelo.predict(np.array(10).reshape(-1,1))
+nota0 = modelo.predict(np.array(0).reshape(-1,1))
+nota25 = modelo.predict(np.array(25).reshape(-1,1))
+
+if nota25>7:
+    nota25=[7]
+
+print(f'{nota10}, {nota0}, {nota25}')
+
+data_flojos = notas[notas['Tiempo_estudio'] <=10]
+print(data_flojos.head())
+
+
+notaMariaC = modelo.predict(np.array(4.6).reshape(-1,1))
+notaRaul = modelo.predict(np.array(0.7).reshape(-1,1))
+notaMariaF = modelo.predict(np.array(6.8).reshape(-1,1))
+notaGabriela = modelo.predict(np.array(5.2).reshape(-1,1))
+notaBea = modelo.predict(np.array(2.9).reshape(-1,1))
+
+print(f'{notaMariaC},{notaRaul},{notaMariaF},{notaGabriela},{notaBea}')
