@@ -46,12 +46,12 @@ x = np.array(notas['Tiempo_estudio']).reshape(-1,1)
 y = np.array(notas['Nota'])
 modelo.fit(x,y)
 
-plt.scatter(notas['Tiempo_estudio'], notas['Nota'])
+# plt.scatter(notas['Tiempo_estudio'], notas['Nota'])
 plt.xlabel('Horas de estudio')
 plt.ylabel('Nota obtenida')
 
 y_modelo = modelo.predict(x)
-plt.plot(x,y_modelo, color='red')
+# plt.plot(x,y_modelo, color='red')
 # plt.show()
 
 pendiente_modelo = modelo.coef_[0]
@@ -89,11 +89,38 @@ print(f'{nota10}, {nota0}, {nota25}')
 data_flojos = notas[notas['Tiempo_estudio'] <=10]
 print(data_flojos.head())
 
+modelo_flojos = LinearRegression()
+x_flojos = np.array(data_flojos['Tiempo_estudio']).reshape(-1,1)
+y_flojos = np.array(data_flojos['Nota'])
+modelo_flojos.fit(x_flojos, y_flojos)
 
+plt.scatter(data_flojos['Tiempo_estudio'], data_flojos['Nota'])
+plt.xlabel('Horas de estudio')
+plt.ylabel('Nota obtenida')
+plt.title('Estudiantes con 10 horas o menos de estudio')
+
+y_pred_flojos = modelo_flojos.predict(x_flojos)
+plt.plot(x_flojos, y_pred_flojos, color='red', label='Regresión lineal')
+plt.legend()
+plt.grid()
+plt.show()
+
+print(f'Pendiente (flojos): {modelo_flojos.coef_[0]}')
+print(f'Intersección (flojos): {modelo_flojos.intercept_}')
+print(f'MSE (flojos): {mean_squared_error(y_flojos,y_pred_flojos)}')
+print(f'rMSE (flojos): {(mean_squared_error(y_flojos,y_pred_flojos))**(1/2)}')
+print(f'MAE (flojos): {mean_absolute_error(y_flojos,y_pred_flojos)}')
+print(f'R² (flojos): {r2_score(y_flojos, y_pred_flojos)}')
+
+'''
 notaMariaC = modelo.predict(np.array(4.6).reshape(-1,1))
 notaRaul = modelo.predict(np.array(0.7).reshape(-1,1))
 notaMariaF = modelo.predict(np.array(6.8).reshape(-1,1))
 notaGabriela = modelo.predict(np.array(5.2).reshape(-1,1))
 notaBea = modelo.predict(np.array(2.9).reshape(-1,1))
 
-print(f'{notaMariaC},{notaRaul},{notaMariaF},{notaGabriela},{notaBea}')
+print(f'{notaMariaC},{notaRaul},{notaMariaF},{notaGabriela},{notaBea}') #OKOKOKOKOKOKOKOKOK
+'''
+
+
+
